@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory android:title="@string/pref_basic">
+
+    <CheckBoxPreference
+      android:defaultValue="false"
+      android:key="unlock_premium"
+      android:summary="@string/pref_unlock_premium_summary"
+      android:title="@string/pref_unlock_premium"/>
+
+    <CheckBoxPreference
+      android:defaultValue="true"
+      android:key="auto_rotate"
+      android:summary="@string/pref_remove_auto_rotate_summary"
+      android:title="@string/pref_remove_auto_rotate"/>
+
+    <PreferenceScreen
+      android:key="ui_adjustment_screen"
+      android:summary="@string/pref_ui_adjustment_summary"
+      android:title="@string/pref_ui_adjustment">
+
+      <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="symbol_bar_adjustment"
+        android:summary="@string/pref_ui_adjustment_symbol_bar_size_summary"
+        android:title="@string/pref_ui_adjustment_symbol_bar_size"/>
+
+      <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="search_page_adjustment"
+        android:summary="@string/pref_ui_adjustment_search_page_size_summary"
+        android:title="@string/pref_ui_adjustment_search_page_size"/>
+
+      <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="action_bar_icon"
+        android:summary="@string/pref_ui_adjustment_action_icon_summary"
+        android:title="@string/pref_ui_adjustment_action_icon"/>
+
+    </PreferenceScreen>
+
+  </PreferenceCategory>
+  <PreferenceCategory android:title="@string/pref_expand">
+
+    <CheckBoxPreference
+      android:defaultValue="true"
+      android:key="chinese_completion"
+      android:summary="@string/pref_chinese_completion_summary"
+      android:title="@string/pref_chinese_completion"/>
+
+    <PreferenceScreen
+      android:key="gradle_completion_expand_screen"
+      android:summary="@string/pref_gradle_completion_expand_summary"
+      android:title="@string/pref_gradle_completion_expand">
+
+      <SwitchPreference
+        android:defaultValue="false"
+        android:key="gradle_completion_expand"
+        android:title="@string/pref_gradle_completion_expand_enabled"/>
+
+      <EditTextPreference
+        android:dependency="gradle_completion_expand"
+        android:key="gradle_completion_custom"
+        android:summary="@string/pref_gradle_completion_expand_custom_summary"
+        android:title="@string/pref_gradle_completion_expand_custom"/>
+
+    </PreferenceScreen>
+
+    <ListPreference
+      android:defaultValue="com.aide.ui"
+      android:entries="@array/pref_switch_version_titles"
+      android:entryValues="@array/pref_switch_version_values"
+      android:key="switch_version"
+      android:summary="@string/pref_switch_version_summary"
+      android:title="@string/pref_switch_version"/>
+
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="@string/pref_about">
+
+    <Preference
+      android:key="about_developer"
+      android:summary="@string/pref_about_developer_summary"
+      android:title="@string/pref_about_developer">
+      <intent
+        android:action="android.intent.action.VIEW"
+        android:data="http://www.coolapk.com/u/1128748"
+        android:targetPackage="com.coolapk.market"/>
+    </Preference>
+
+    <Preference
+      android:key="donation"
+      android:summary="@string/pref_donation_summary"
+      android:title="@string/pref_donation"/>
+
+    <PreferenceScreen
+      android:key="open_source_library_screen"
+      android:summary="@string/pref_open_source_library_summary"
+      android:title="@string/pref_open_source_library">
+
+      <Preference
+        android:key="open_source_library_okhttp"
+        android:summary="@string/pref_open_source_library_okhttp_summary"
+        android:title="@string/pref_open_source_library_okhttp">
+        <intent
+          android:action="android.intent.action.VIEW"
+          android:data="https://github.com/square/okhttp">
+        </intent>
+      </Preference>
+
+      <Preference
+        android:key="open_source_library_litepal"
+        android:summary="@string/pref_open_source_library_litepal_summary"
+        android:title="@string/pref_open_source_library_litepal">
+        <intent
+          android:action="android.intent.action.VIEW"
+          android:data="https://github.com/LitePalFramework/LitePal"/>
+      </Preference>
+
+    </PreferenceScreen>
+
+    <Preference
+      android:key="update_log"
+      android:summary="@string/pref_update_log_summary"
+      android:title="@string/pref_update_log"/>
+
+    <Preference
+      android:key="get_virtual_xposed"
+      android:summary="@string/pref_get_virtual_xposed_summary"
+      android:title="@string/pref_get_virtual_xposed">
+      <intent
+        android:action="android.intent.action.VIEW"
+        android:data="https://github.com/android-hacker/VirtualXposed/releases"/>
+    </Preference>
+
+  </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+  <dbname value="CompletionTranslation"/>
+  <version value="1"/>
+  <list>
+  </list>
+  <mapping class="me.tvcfish.xposed.aidehelper.model.MethodCompletion"/>
+  <storage value="external"/>
+</litepal>

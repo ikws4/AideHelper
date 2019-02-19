@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  package="me.tvcfish.xposed.aidehelper">
+
+  <application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:name="org.litepal.LitePalApplication"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme"
+    tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+    <meta-data
+      android:name="xposedmodule"
+      android:value="true"/>
+    <meta-data
+      android:name="xposeddescription"
+      android:value="Aide功能拓展"/>
+    <meta-data
+      android:name="xposedminversion"
+      android:value="54"/>
+
+    <activity
+      android:label="@string/app_name"
+      android:name=".activity.MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
+    <provider
+      android:authorities="me.tvcfish.xposed.aidehelper.provider.DBProvider"
+      android:exported="true"
+      android:grantUriPermissions="true"
+      android:name=".provider.DBProvider"
+      tools:ignore="ExportedContentProvider">
+    </provider>
+  </application>
+
+</manifest>
