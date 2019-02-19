@@ -1,18 +1,23 @@
-Version：0.07-beta
+Version: 1.0
+1.已开源至GitHub（欢迎Start）
+2.开源库引用说明更新
+3.进入慢更时代（如果不是必要情况应该不会更新了）
+
+Version: 0.07-beta
 1.修复WebsiteBootstrap JavaScript PhoneGap项目创建后为空的问题 @FlenKeAustin
 2.添加更新日志的Dialog
 3.厚颜无耻的添加了捐赠，嘿嘿嘿
 tip:安装该版本后请执行一次打开AideHelper的操作（解压模版文件）
 
 
-Version：0.06-beta
+Version: 0.06-beta
 1.解锁专业版-是指AIDE的专业版内容（终于搞好了）
 
 
-Version：0.05-beta
+Version: 0.05-beta
 1.界面微调 2.gradle补全拓展
 
 
-Version：0.04-beta
+Version: 0.04-beta
 1.添加模块启用检查
 2.添加PhoneGap支持（酷友要求@FlenKeAustin，只适用于破解版）
