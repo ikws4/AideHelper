@@ -8,8 +8,8 @@ android {
         applicationId "me.tvcfish.xposed.aidehelper"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 11000
-        versionName "1.0"
+        versionCode 11001
+        versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

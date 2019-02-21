@@ -66,6 +66,10 @@ enum SwitchVersion {
               File phoneGapAppNew = new File(aideHelper + "PhoneGapAppNew.zip");
               param.setResult(new FileInputStream(phoneGapAppNew));
               break;
+            case "AIDEWebSamples.zip":
+              File aideWebSamples = new File(aideHelper + "AIDEWebSamples.zip");
+              param.setResult(new FileInputStream(aideWebSamples));
+              break;
           }
         }
       });
