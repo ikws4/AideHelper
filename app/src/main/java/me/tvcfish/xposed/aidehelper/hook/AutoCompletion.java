@@ -161,7 +161,8 @@ enum AutoCompletion {
               }
               //翻译
               try {
-                MethodCompletion method = getTranslation(textView.getText().toString());
+                MethodCompletion method = TranslateUtil
+                    .getTranslation(mContext, textView.getText().toString());
                 textView.append("\n->" + method.getChinese());
                 textView.setTag(method);
                 callMethod(arrayAdapter, "j6", textView, J8.length(), textView.getText().length(),
@@ -211,53 +212,6 @@ enum AutoCompletion {
             return view;
           }
         });
-  }
-
-
-  private MethodCompletion getTranslation(String text) {
-    //Provider Uri
-    Uri uri = Uri.parse(DBProvider.TRANSLATION_CONTENT_URL);
-
-    //读取数据库
-    Bundle read = new Bundle();
-    read.putString("english", text);
-    read = mContext.getContentResolver().call(uri, "query", null, read);
-
-    assert read != null;
-    int state = read.getInt("state");
-    MethodCompletion method = new MethodCompletion();
-    if (state == 0) {
-      //写入默认数据
-      try {
-        Bundle write = new Bundle();
-        write.putString("english", text);
-        write.putInt("state", DBProvider.TRANSLATE_STATE_INIT);
-        mContext.getContentResolver().call(uri, "save", null, write);
-        method.setChinese("成功写入初始数据，请再次滑动列表进行翻译");
-        return method;
-      } catch (Exception e) {
-        XUtil.log(e);
-        method.setChinese("无法写入初始数据，请赋予AideHelper读写权限");
-        return method;
-      }
-    } else if (state == DBProvider.TRANSLATE_STATE_INIT) {
-      //翻译
-      TranslateUtil.getResult(mContext, text);
-      method.setChinese("翻译中...");
-      return method;
-    } else if (state == DBProvider.TRANSLATE_STATE_FAIL) {
-      //翻译
-      TranslateUtil.getResult(mContext, text);
-      method.setChinese("翻译失败，请检查网络");
-      return method;
-    } else {
-      //返回以存在的数据
-      MethodCompletion readMethod = new MethodCompletion();
-      readMethod.setEnglish(read.getString("english"));
-      readMethod.setChinese(read.getString("chinese"));
-      readMethod.setNotes(read.getString("notes"));
-      return readMethod;
-    }
   }
 
   /**

@@ -57,7 +57,7 @@
   <!--二级页面-->
   <string name="pref_gradle_completion_expand_enabled">开启</string>
   <string name="pref_gradle_completion_expand_custom">自定义</string>
-  <string name="pref_gradle_completion_expand_custom_summary">自定义补全内容，请用 \" \\n \" (换行)隔开</string>
+  <string name="pref_gradle_completion_expand_custom_summary">自定义补全内容，使用换行换行隔开</string>
   <!--END-->
 
   <!--关于-->

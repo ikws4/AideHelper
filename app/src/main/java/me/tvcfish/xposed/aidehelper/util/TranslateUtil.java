@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import me.tvcfish.xposed.aidehelper.model.MethodCompletion;
 import me.tvcfish.xposed.aidehelper.provider.DBProvider;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -25,7 +26,7 @@ public class TranslateUtil {
   private static final String salt = "1434918491";
 
 
-  public static void getResult(final Context context, final String q) {
+  private static void saveRequest(final Context context, final String q) {
     String en = wordSegmentation(q.toCharArray(), 0,
         q.length(), false, "");
     OkHttpClient client = new OkHttpClient();
@@ -74,6 +75,52 @@ public class TranslateUtil {
         }
       }
     });
+  }
+
+  public static MethodCompletion getTranslation(Context context, String text) {
+    //Provider Uri
+    Uri uri = Uri.parse(DBProvider.TRANSLATION_CONTENT_URL);
+
+    //读取数据库
+    Bundle read = new Bundle();
+    read.putString("english", text);
+    read = context.getContentResolver().call(uri, "query", null, read);
+
+    assert read != null;
+    int state = read.getInt("state");
+    MethodCompletion method = new MethodCompletion();
+    if (state == 0) {
+      //写入默认数据
+      try {
+        Bundle write = new Bundle();
+        write.putString("english", text);
+        write.putInt("state", DBProvider.TRANSLATE_STATE_INIT);
+        context.getContentResolver().call(uri, "save", null, write);
+        method.setChinese("成功写入初始数据，请再次滑动列表进行翻译");
+        return method;
+      } catch (Exception e) {
+        XUtil.log(e);
+        method.setChinese("无法写入初始数据，请赋予AideHelper读写权限");
+        return method;
+      }
+    } else if (state == DBProvider.TRANSLATE_STATE_INIT) {
+      //翻译
+      TranslateUtil.saveRequest(context, text);
+      method.setChinese("翻译中...");
+      return method;
+    } else if (state == DBProvider.TRANSLATE_STATE_FAIL) {
+      //翻译
+      TranslateUtil.saveRequest(context, text);
+      method.setChinese("翻译失败，请检查网络");
+      return method;
+    } else {
+      //返回以存在的数据
+      MethodCompletion readMethod = new MethodCompletion();
+      readMethod.setEnglish(read.getString("english"));
+      readMethod.setChinese(read.getString("chinese"));
+      readMethod.setNotes(read.getString("notes"));
+      return readMethod;
+    }
   }
 
   /**
