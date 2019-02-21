@@ -25,4 +25,4 @@
 
 [CoolApk](https://www.coolapk.com/apk/me.tvcfish.xposed.aidehelper)
 
-[release](app/release/app-release.apk)
+[release](https://github.com/TvcFish/AideHelper/releases)
