@@ -36,8 +36,7 @@ enum  AutoRotate {
    * Hook代码实现
    */
   private void hookMethod(){
-    Class clazz = findClass("android.app.Activity",XUtil.getClassLoader());
-    findAndHookMethod(clazz, "onCreate", Bundle.class, new XC_MethodHook() {
+    findAndHookMethod(Activity.class, "onCreate", Bundle.class, new XC_MethodHook() {
       @Override
       protected void afterHookedMethod(MethodHookParam param) throws Throwable {
         super.afterHookedMethod(param);

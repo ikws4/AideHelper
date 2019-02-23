@@ -3,6 +3,7 @@ package me.tvcfish.xposed.aidehelper.hook;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
 
+import android.content.res.AssetManager;
 import de.robv.android.xposed.XC_MethodHook;
 import java.io.File;
 import java.io.FileInputStream;
@@ -45,9 +46,7 @@ enum SwitchVersion {
 
     //模版添加
     if (!isOpen().equals("com.aide.ui")) {
-      Class assetManagerClass = findClass("android.content.res.AssetManager",
-          XUtil.getClassLoader());
-      findAndHookMethod(assetManagerClass, "open", String.class, new XC_MethodHook() {
+      findAndHookMethod(AssetManager.class, "open", String.class, new XC_MethodHook() {
         @Override
         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
           super.beforeHookedMethod(param);
