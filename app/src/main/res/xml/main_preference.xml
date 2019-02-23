@@ -90,9 +90,23 @@
         </Preference>
 
         <Preference
+            android:key="github"
+            android:summary="@string/pref_github_summary"
+            android:title="@string/pref_github">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/TvcFish/AideHelper"/>
+        </Preference>
+
+        <Preference
             android:key="donation"
             android:summary="@string/pref_donation_summary"
             android:title="@string/pref_donation"/>
+
+        <Preference
+            android:key="update_log"
+            android:summary="@string/pref_update_log_summary"
+            android:title="@string/pref_update_log"/>
 
         <PreferenceScreen
             android:key="open_source_library_screen"
@@ -127,22 +141,8 @@
                     android:data="https://github.com/CankingApp/MiniPay"/>
             </Preference>
 
-
         </PreferenceScreen>
 
-        <Preference
-            android:key="update_log"
-            android:summary="@string/pref_update_log_summary"
-            android:title="@string/pref_update_log"/>
-
-        <Preference
-            android:key="github"
-            android:summary="@string/pref_github_summary"
-            android:title="@string/pref_github">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://github.com/TvcFish/AideHelper"/>
-        </Preference>
     </PreferenceCategory>
 
 </PreferenceScreen>
