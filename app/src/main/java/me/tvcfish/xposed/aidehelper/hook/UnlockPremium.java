@@ -1,10 +1,9 @@
 package me.tvcfish.xposed.aidehelper.hook;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.findClass;
 
 import de.robv.android.xposed.XC_MethodReplacement;
-import me.tvcfish.xposed.aidehelper.util.XUtil;
+import me.tvcfish.xposed.util.XHelper;
 
 enum UnlockPremium {
 
@@ -26,14 +25,14 @@ enum UnlockPremium {
    * @return boolean
    */
   private boolean isOpen() {
-    return XUtil.getPref().getBoolean("unlock_premium", false);
+    return XHelper.getSharedPreferences().getBoolean("unlock_premium", false);
   }
 
   /**
    * Hook代码实现
    */
   private void hookTarget() {
-    Class clazz = findClass("pc", XUtil.getClassLoader());
+    Class clazz = XHelper.findClass("pc");
     String[] strings = new String[]{"a8", "FH", "VH", "tp", "EQ", "QX", "XL", "j3"};
     for (String value : strings) {
       findAndHookMethod(clazz, value, new XC_MethodReplacement() {

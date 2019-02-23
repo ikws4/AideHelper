@@ -1,13 +1,12 @@
 package me.tvcfish.xposed.aidehelper.hook;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.findClass;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import de.robv.android.xposed.XC_MethodHook;
-import me.tvcfish.xposed.aidehelper.util.XUtil;
+import me.tvcfish.xposed.util.XHelper;
 
 enum  AutoRotate {
 
@@ -29,7 +28,7 @@ enum  AutoRotate {
    * @return boolean
    */
   private boolean isOpen() {
-    return XUtil.getPref().getBoolean("auto_rotate", true);
+    return XHelper.getSharedPreferences().getBoolean("auto_rotate", true);
   }
 
   /**

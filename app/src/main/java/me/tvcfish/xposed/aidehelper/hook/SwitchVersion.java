@@ -1,13 +1,14 @@
 package me.tvcfish.xposed.aidehelper.hook;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.findClass;
 
 import android.content.res.AssetManager;
+import android.os.Environment;
 import de.robv.android.xposed.XC_MethodHook;
 import java.io.File;
 import java.io.FileInputStream;
-import me.tvcfish.xposed.aidehelper.util.XUtil;
+import me.tvcfish.xposed.util.BuildConfig;
+import me.tvcfish.xposed.util.XHelper;
 
 enum SwitchVersion {
   INSTANCE;
@@ -28,14 +29,14 @@ enum SwitchVersion {
    * @return boolean
    */
   private String isOpen() {
-    return XUtil.getPref().getString("switch_version", "com.aide.ui");
+    return XHelper.getSharedPreferences().getString("switch_version", "com.aide.ui");
   }
 
   /**
    * Hook代码实现
    */
   private void hookMethod() {
-    Class clazz = findClass("com.aide.ui.f", XUtil.getClassLoader());
+    Class clazz = XHelper.findClass("com.aide.ui.f");
     findAndHookMethod(clazz, "j6", String.class, new XC_MethodHook() {
       @Override
       protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -51,7 +52,8 @@ enum SwitchVersion {
         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
           super.beforeHookedMethod(param);
           String fileName = param.args[0].toString();
-          String aideHelper = "/storage/emulated/0/Android/data/me.tvcfish.xposed.aidehelper/files/assets/templates/";
+          String aideHelper = Environment.getExternalStorageDirectory() + "/Android/data/"
+              + BuildConfig.APPLICATION_ID + "/files/assets/templates/";
           switch (fileName) {
             case "templates/WebsiteBootstrap.zip":
               File websiteBootstrap = new File(aideHelper + "WebsiteBootstrap.zip");

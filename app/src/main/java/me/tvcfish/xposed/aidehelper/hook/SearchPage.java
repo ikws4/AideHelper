@@ -1,13 +1,12 @@
 package me.tvcfish.xposed.aidehelper.hook;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.findClass;
 
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
-import me.tvcfish.xposed.aidehelper.util.XUtil;
+import me.tvcfish.xposed.util.XHelper;
 
-enum  SearchPage {
+enum SearchPage {
 
   INSTANCE;
 
@@ -27,16 +26,15 @@ enum  SearchPage {
    * @return boolean
    */
   private boolean isOpen() {
-    return XUtil.getPref().getBoolean("search_page_adjustment", false);
+    return XHelper.getSharedPreferences().getBoolean("search_page_adjustment", false);
   }
 
   /**
    * Hook代码实现
    */
   private void hookMethod() {
-    Class clazz = findClass("com.aide.ui.browsers.FindResultTextView",
-        XUtil.getClassLoader());
-    Class findResult = findClass("com.aide.engine.FindResult", XUtil.getClassLoader());
+    Class clazz = XHelper.findClass("com.aide.ui.browsers.FindResultTextView");
+    Class findResult = XHelper.findClass("com.aide.engine.FindResult");
     findAndHookMethod(clazz, "setContent", findResult, new XC_MethodHook() {
       @Override
       protected void afterHookedMethod(MethodHookParam param) {

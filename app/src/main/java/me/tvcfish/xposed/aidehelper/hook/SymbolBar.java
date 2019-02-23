@@ -1,7 +1,6 @@
 package me.tvcfish.xposed.aidehelper.hook;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.findClass;
 import static de.robv.android.xposed.XposedHelpers.setObjectField;
 
 import android.annotation.SuppressLint;
@@ -13,10 +12,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedHelpers;
 import java.lang.reflect.Field;
 import me.tvcfish.xposed.aidehelper.util.ConversionUtil;
-import me.tvcfish.xposed.aidehelper.util.XUtil;
+import me.tvcfish.xposed.util.XHelper;
 
 enum SymbolBar {
   INSTANCE;
@@ -38,7 +36,7 @@ enum SymbolBar {
    * @return boolean
    */
   private boolean isOpen() {
-    return XUtil.getPref().getBoolean("symbol_bar_adjustment", false);
+    return XHelper.getSharedPreferences().getBoolean("symbol_bar_adjustment", false);
   }
 
   /**
@@ -46,7 +44,7 @@ enum SymbolBar {
    */
   private void hookMethod() {
 
-    final Class clazz = findClass("com.aide.ui.o", XUtil.getClassLoader());
+    final Class clazz = XHelper.findClass("com.aide.ui.o");
 
     //重写整个j6方法
     findAndHookMethod(clazz, "j6", String.class, new XC_MethodReplacement() {
@@ -55,9 +53,9 @@ enum SymbolBar {
       protected Object replaceHookedMethod(MethodHookParam param)
           throws NoSuchFieldException, IllegalAccessException {
         final Object thisObject = param.thisObject;
-        Field field = XUtil.getField(clazz, "DW");
-        Field field1 = XUtil.getField(clazz, "FH");
-        Field field2 = XUtil.getField(clazz, "j6");
+        Field field = XHelper.getField(clazz, "DW");
+        Field field1 = XHelper.getField(clazz, "FH");
+        Field field2 = XHelper.getField(clazz, "j6");
 
         String str = (String) param.args[0];
         View DW = (View) field.get(thisObject);
@@ -84,9 +82,8 @@ enum SymbolBar {
             }
             viewGroup.addView(textView, new LayoutParams(i, i2));
             //new 3(this,replace2)
-            OnClickListener clickListener = (OnClickListener) XposedHelpers
-                .newInstance(findClass("com.aide.ui.o$3", XUtil.getClassLoader()),
-                    thisObject, replace2);
+            OnClickListener clickListener = (OnClickListener) XHelper
+                .newInstance("com.aide.ui.o$3", thisObject, replace2);
             textView.setOnClickListener(clickListener);
           }
         }

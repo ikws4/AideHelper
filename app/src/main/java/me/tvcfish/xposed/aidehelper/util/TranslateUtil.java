@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import me.tvcfish.xposed.aidehelper.model.MethodCompletion;
 import me.tvcfish.xposed.aidehelper.provider.DBProvider;
+import me.tvcfish.xposed.util.XHelper;
+import me.tvcfish.xposed.util.XLog;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -24,6 +26,9 @@ public class TranslateUtil {
   private static final String to = "zh-CHS";
   private static final String pid = "85c2ddface5a4e913fc22fa34df0783c";
   private static final String salt = "1434918491";
+
+  //TAG
+  private static final String TAG = "TranslateUtil";
 
 
   private static void saveRequest(final Context context, final String q) {
@@ -71,7 +76,7 @@ public class TranslateUtil {
           bundle.putInt("state", DBProvider.TRANSLATE_STATE_OK);
           context.getContentResolver().call(uri, "update", DBProvider.TRANSLATE, bundle);
         } catch (JSONException e) {
-          XUtil.log(e);
+          XLog.show(TAG,e);
         }
       }
     });
@@ -99,7 +104,7 @@ public class TranslateUtil {
         method.setChinese("成功写入初始数据，请再次滑动列表进行翻译");
         return method;
       } catch (Exception e) {
-        XUtil.log(e);
+        XLog.show(TAG,e);
         method.setChinese("无法写入初始数据，请赋予AideHelper读写权限");
         return method;
       }

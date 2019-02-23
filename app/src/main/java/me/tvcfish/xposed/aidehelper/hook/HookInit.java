@@ -7,7 +7,8 @@ import android.content.Context;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import me.tvcfish.xposed.aidehelper.util.XUtil;
+import me.tvcfish.xposed.aidehelper.BuildConfig;
+import me.tvcfish.xposed.util.XHelper;
 
 public class HookInit implements IXposedHookLoadPackage {
 
@@ -15,10 +16,10 @@ public class HookInit implements IXposedHookLoadPackage {
   public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) {
     final String packageName = lpparam.packageName;
     //初始化
-    XUtil.init(lpparam);
+    XHelper.init(lpparam);
 
     //判断是否启用模块
-    if (packageName.equals("me.tvcfish.xposed.aidehelper")) {
+    if (packageName.equals(BuildConfig.APPLICATION_ID)) {
       EnabledHookModel.INSTANCE.startHook();
       return;
     }

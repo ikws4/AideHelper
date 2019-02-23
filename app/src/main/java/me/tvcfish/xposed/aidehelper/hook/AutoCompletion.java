@@ -2,7 +2,6 @@ package me.tvcfish.xposed.aidehelper.hook;
 
 import static de.robv.android.xposed.XposedHelpers.callMethod;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.findClass;
 import static de.robv.android.xposed.XposedHelpers.getStaticObjectField;
 
 import android.annotation.SuppressLint;
@@ -39,7 +38,8 @@ import me.tvcfish.xposed.aidehelper.model.MethodCompletion;
 import me.tvcfish.xposed.aidehelper.provider.DBProvider;
 import me.tvcfish.xposed.aidehelper.util.ConversionUtil;
 import me.tvcfish.xposed.aidehelper.util.TranslateUtil;
-import me.tvcfish.xposed.aidehelper.util.XUtil;
+import me.tvcfish.xposed.util.XHelper;
+import me.tvcfish.xposed.util.XLog;
 
 enum AutoCompletion {
 
@@ -48,6 +48,8 @@ enum AutoCompletion {
 
   //MainActivity
   private Activity mContext;
+  //TAG
+  private static final String TAG = "AutoCompletion";
 
   /**
    * 开始Hook
@@ -68,8 +70,8 @@ enum AutoCompletion {
    * 获取上下文
    */
   private void getContext() {
-    Class classLoader = findClass("com.aide.ui.MainActivity", XUtil.getClassLoader());
-    findAndHookMethod(classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
+    Class clazz = XHelper.findClass("com.aide.ui.MainActivity");
+    findAndHookMethod(clazz, "onCreate", Bundle.class, new XC_MethodHook() {
       @Override
       protected void beforeHookedMethod(MethodHookParam param) {
         mContext = (Activity) param.thisObject;
@@ -83,7 +85,7 @@ enum AutoCompletion {
    * @return boolean
    */
   private boolean isOpen() {
-    return XUtil.getPref().getBoolean("chinese_completion", true);
+    return XHelper.getSharedPreferences().getBoolean("chinese_completion", true);
   }
 
   /**
@@ -91,10 +93,10 @@ enum AutoCompletion {
    */
   private void hookArrayAdapter() {
     //主要目标Class
-    Class arrayAdapterClass = findClass("com.aide.ui.a$a", XUtil.getClassLoader());
+    Class clazz = XHelper.findClass("com.aide.ui.a$a");
 
     //重写整个getView方法
-    findAndHookMethod(arrayAdapterClass, "getView", int.class, View.class, ViewGroup.class,
+    findAndHookMethod(clazz, "getView", int.class, View.class, ViewGroup.class,
         new XC_MethodReplacement() {
           @SuppressLint({"ResourceType", "SetTextI18n"})
           @Override
@@ -128,7 +130,7 @@ enum AutoCompletion {
 
               //5.j6[sourceEntity.DW().ordinal()]
               int[] j6 = (int[]) getStaticObjectField(
-                  findClass("com.aide.ui.a$5", XUtil.getClassLoader()), "j6");
+                  XHelper.findClass("com.aide.ui.a$5"), "j6");
               Object sourceEntity$a = callMethod(sourceEntity, "DW");
               int ordinal = (int) callMethod(sourceEntity$a, "ordinal");
               int i2 = j6[ordinal];
@@ -168,7 +170,7 @@ enum AutoCompletion {
                 callMethod(arrayAdapter, "j6", textView, J8.length(), textView.getText().length(),
                     Color.parseColor("#FFAAAAAA"));
               } catch (Exception e) {
-                XUtil.log(e);
+                XLog.show(TAG, e);
               }
 
               ImageView imageView = view.findViewById(0x7f080024);
@@ -219,9 +221,9 @@ enum AutoCompletion {
    */
   private void hookItemLongClick() {
     //AdapterView长按
-    Class adapterViewClass = findClass("com.aide.ui.a$4", XUtil.getClassLoader());
+    Class clazz = XHelper.findClass("com.aide.ui.a$4");
 
-    findAndHookMethod(adapterViewClass, "onItemLongClick", AdapterView.class, View.class,
+    findAndHookMethod(clazz, "onItemLongClick", AdapterView.class, View.class,
         int.class,
         long.class, new XC_MethodReplacement() {
           @Override
@@ -326,20 +328,18 @@ enum AutoCompletion {
                       @SuppressLint("ResourceType")
                       ViewGroup AIDEEditorPager = mContext.findViewById(0x7f0800f1);
                       XposedHelpers.callMethod(AIDEEditorPager, "Ws");
-                      Activity activity = (Activity) XposedHelpers.callStaticMethod(
-                          findClass("com.aide.ui.f", XUtil.getClassLoader()), "u7");
+                      Activity activity = (Activity) XHelper
+                          .callStaticMethod("com.aide.ui.f", "u7");
                       ListView completionListView = (ListView) XposedHelpers
                           .getObjectField(thisObject, "j6");
                       Object sourceEntity = completionListView.getItemAtPosition(index);
                       String QX = XposedHelpers.callMethod(sourceEntity, "QX").toString();
-                      String EQ = XposedHelpers.callStaticMethod(
-                          findClass("com.aide.ui.activities.a", XUtil.getClassLoader()),
-                          "EQ").toString();
-                      XposedHelpers
-                          .callStaticMethod(findClass("com.aide.common.b", XUtil.getClassLoader()),
-                              "j6", activity, QX, EQ);
+                      String EQ = XHelper.callStaticMethod("com.aide.ui.activities.a", "EQ")
+                          .toString();
+                      XHelper.callStaticMethod("com.aide.common.b", "j6", activity,
+                          QX, EQ);
                     } catch (Exception e) {
-                      XUtil.log(e);
+                      XLog.show(TAG, e);
                     }
                     break;
                 }

@@ -34,6 +34,7 @@ dependencies {
     implementation 'org.litepal.android:java:3.0.0'
     //xposed
     compileOnly 'de.robv.android.xposed:api:82'
+    implementation project(':XposedUtil')
 }
 
 afterEvaluate {
