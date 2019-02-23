@@ -16,7 +16,7 @@ public class HookInit implements IXposedHookLoadPackage {
   public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) {
     final String packageName = lpparam.packageName;
     //初始化
-    XHelper.init(lpparam);
+    XHelper.init(lpparam,BuildConfig.APPLICATION_ID);
 
     //判断是否启用模块
     if (packageName.equals(BuildConfig.APPLICATION_ID)) {

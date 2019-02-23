@@ -22,14 +22,19 @@ import java.lang.reflect.Field;
 public class XHelper {
 
   private static LoadPackageParam sLoadPackageParam;
+  //配置参数
+  private static WeakReference<XSharedPreferences> xSharedPreferences = new WeakReference<>(null);
+  //包名
+  private static String sAppPackageName;
 
   /**
    * 初始化操作
    *
    * @param loadPackageParam 用来加载类
    */
-  public static void init(@NonNull LoadPackageParam loadPackageParam) {
+  public static void init(@NonNull LoadPackageParam loadPackageParam,String appPackageName) {
     sLoadPackageParam = loadPackageParam;
+    sAppPackageName = appPackageName;
   }
 
   /**
@@ -113,7 +118,16 @@ public class XHelper {
    * @return preferences
    */
   public static XSharedPreferences getSharedPreferences() {
-    return new WeakReference<XSharedPreferences>(null).get();
+    XSharedPreferences preferences = xSharedPreferences.get();
+    if (preferences == null) {
+      preferences = new XSharedPreferences(sAppPackageName);
+      preferences.makeWorldReadable();
+      preferences.reload();
+      xSharedPreferences = new WeakReference<>(preferences);
+    } else {
+      preferences.reload();
+    }
+    return preferences;
   }
 
   /**
