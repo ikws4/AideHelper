@@ -27,13 +27,14 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     //捐赠
-    implementation 'com.canking.minipay:minipay:1.0.2'
+    implementation 'com.canking.minipay:minipay:1.0.5'
     //网络
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     //数据库
     implementation 'org.litepal.android:java:3.0.0'
     //xposed
     compileOnly 'de.robv.android.xposed:api:82'
+
     implementation project(':XposedUtil')
 }
 
@@ -55,6 +56,6 @@ task rebootVirtualXposedAPP(type: Exec) {
 }
 // 重启 VXP 需要 hook 的 APP，需要知道它的包名
 task launchVirtualXposedAPP(type: Exec) {
-    def pkg = 'me.tvcfish.xposed.aidehelper'// 需要 hook 的 app
+    def pkg = 'com.aide.ui'// 需要 hook 的 app
     commandLine android.adbExecutable, 'shell', 'am', 'broadcast', '-a', 'io.va.exposed.CMD', '-e', 'cmd', 'launch', '-e', 'pkg', pkg
 }
