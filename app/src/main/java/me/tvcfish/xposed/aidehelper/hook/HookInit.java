@@ -4,16 +4,18 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import me.tvcfish.xposed.aidehelper.BuildConfig;
 import me.tvcfish.xposed.util.XHelper;
+import me.tvcfish.xposed.util.XLog;
 
 public class HookInit implements IXposedHookLoadPackage {
 
   @Override
-  public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) {
+  public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
     final String packageName = lpparam.packageName;
     //初始化
     XHelper.init(lpparam,BuildConfig.APPLICATION_ID);

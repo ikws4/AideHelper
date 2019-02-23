@@ -1,90 +1,87 @@
 <resources>
-  <string name="app_name">AideHelper</string>
-  <string name="app_exit">退出</string>
-  <string name="app_get_vxp">获取VXP</string>
-  <string name="app_ok">好的</string>
+    <string name="app_name">AideHelper</string>
+    <string name="app_get_vxp">VXP</string>
+    <string name="app_get_taici">太极</string>
+    <string name="app_ok">好的</string>
 
-  <string name="donation_wechat">微信</string>
-  <string name="donation_alipay">支付宝</string>
+    <string name="donation_wechat">微信</string>
+    <string name="donation_alipay">支付宝</string>
 
-  <!--MainActivity-->
-  <string name="main_activity_hook_dialog_title">模块未启用</string>
-  <string name="main_activity_hook_dialog_message">请去Xposed框架里启用该模块，如果你无法安装Xposed框架，那么VirtualXposed(VXP)将是你不错的选择</string>
-  <!--END-->
+    <!--MainActivity-->
+    <string name="main_activity_hook_dialog_title">模块未启用</string>
+    <string name="main_activity_hook_dialog_message">请前往Xposed激活该模块（支持太极、VirtualXposed）</string>
+    <!--END-->
 
-  <!--基本功能-->
-  <string name="pref_basic">基本功能</string>
+    <!--基本功能-->
+    <string name="pref_basic">基本功能</string>
 
-  <string name="pref_unlock_premium">解锁专业版</string>
-  <string name="pref_unlock_premium_summary">AIDE的专业版内容</string>
+    <string name="pref_unlock_premium">解锁专业版</string>
+    <string name="pref_unlock_premium_summary">AIDE的专业版内容</string>
 
-  <string name="pref_remove_auto_rotate">禁用自动旋转</string>
-  <string name="pref_remove_auto_rotate_summary">屏幕随手机旋转，建议开启此选项</string>
+    <string name="pref_remove_auto_rotate">禁用自动旋转</string>
+    <string name="pref_remove_auto_rotate_summary">屏幕随手机旋转，建议开启此选项</string>
 
-  <!--UI调整-->
-  <string name="pref_ui_adjustment">UI调整</string>
-  <string name="pref_ui_adjustment_summary">提供一些适当的布局调整选项</string>
-  <!--二级页面-->
-  <string name="pref_ui_adjustment_symbol_bar_size">符号栏调整</string>
-  <string name="pref_ui_adjustment_symbol_bar_size_summary">字体大小以及一些间距调整</string>
-  <string name="pref_ui_adjustment_search_page_size">搜索结果界面调整</string>
-  <string name="pref_ui_adjustment_search_page_size_summary">取消单行显示</string>
-  <string name="pref_ui_adjustment_action_icon">去除AIDE的icon</string>
-  <string name="pref_ui_adjustment_action_icon_summary">ActionBar中的AIDE图标</string>
-  <!--END-->
+    <!--UI调整-->
+    <string name="pref_ui_adjustment">UI调整</string>
+    <string name="pref_ui_adjustment_summary">提供一些适当的布局调整选项</string>
+    <!--二级页面-->
+    <string name="pref_ui_adjustment_symbol_bar_size">符号栏调整</string>
+    <string name="pref_ui_adjustment_symbol_bar_size_summary">字体大小以及一些间距调整</string>
+    <string name="pref_ui_adjustment_search_page_size">搜索结果界面调整</string>
+    <string name="pref_ui_adjustment_search_page_size_summary">取消单行显示</string>
+    <string name="pref_ui_adjustment_action_icon">去除AIDE的icon</string>
+    <string name="pref_ui_adjustment_action_icon_summary">ActionBar中的AIDE图标</string>
+    <!--END-->
 
-  <!--拓展选项-->
-  <string name="pref_expand">拓展选项</string>
+    <!--拓展选项-->
+    <string name="pref_expand">拓展选项</string>
 
-  <string name="pref_chinese_completion">中文补全</string>
-  <string name="pref_chinese_completion_summary">补全翻译，添加中文注释(sdcard/Android/data/me.tvcfish.xposed.aidehelper/files/databases)</string>
+    <string name="pref_chinese_completion">中文补全</string>
+    <string name="pref_chinese_completion_summary">补全翻译，添加中文注释(sdcard/Android/data/me.tvcfish.xposed.aidehelper/files/databases)</string>
 
-  <string name="pref_switch_version">版本切换</string>
-  <string name="pref_switch_version_summary">提供默认(Android C/C++ Java)和Web(Website JavaScript)以及PhoneGap(如果闪退，请开启【解锁专业版选项】)之间的版本切换</string>
-  <string-array name="pref_switch_version_titles">
-    <item>默认</item>
-    <item>Web</item>
-    <item>PhoneGap</item>
-  </string-array>
-  <string-array name="pref_switch_version_values">
-    <item>com.aide.ui</item>
-    <item>com.aide.web</item>
-    <item>com.aide.phonegap</item>
-  </string-array>
+    <string name="pref_switch_version">版本切换</string>
+    <string name="pref_switch_version_summary">提供默认(Android C/C++ Java)和Web(Website JavaScript)以及PhoneGap(如果闪退，请开启【解锁专业版选项】)之间的版本切换</string>
+    <string-array name="pref_switch_version_titles">
+        <item>默认</item>
+        <item>Web</item>
+        <item>PhoneGap</item>
+    </string-array>
+    <string-array name="pref_switch_version_values">
+        <item>com.aide.ui</item>
+        <item>com.aide.web</item>
+        <item>com.aide.phonegap</item>
+    </string-array>
 
-  <string name="pref_gradle_completion_expand">Gradle补全拓展</string>
-  <string name="pref_gradle_completion_expand_summary">添加api和implementation，支持自定义</string>
-  <!--二级页面-->
-  <string name="pref_gradle_completion_expand_enabled">开启</string>
-  <string name="pref_gradle_completion_expand_custom">自定义</string>
-  <string name="pref_gradle_completion_expand_custom_summary">自定义补全内容，使用换行换行隔开</string>
-  <!--END-->
+    <string name="pref_gradle_completion_expand">Gradle补全拓展</string>
+    <string name="pref_gradle_completion_expand_summary">添加api和implementation，支持自定义</string>
+    <!--二级页面-->
+    <string name="pref_gradle_completion_expand_enabled">开启</string>
+    <string name="pref_gradle_completion_expand_custom">自定义</string>
+    <string name="pref_gradle_completion_expand_custom_summary">自定义补全内容，使用换行换行隔开</string>
+    <!--END-->
 
-  <!--关于-->
-  <string name="pref_about">关于</string>
+    <!--关于-->
+    <string name="pref_about">关于</string>
 
-  <string name="pref_about_developer">作者</string>
-  <string name="pref_about_developer_summary">TvcFish@CoolApk</string>
+    <string name="pref_about_developer">作者</string>
+    <string name="pref_about_developer_summary">TvcFish@CoolApk</string>
 
-  <string name="pref_donation">捐赠</string>
-  <string name="pref_donation_summary">请作者吃一包辣条</string>
+    <string name="pref_donation">捐赠</string>
+    <string name="pref_donation_summary">请作者吃一包辣条</string>
 
-  <string name="pref_open_source_library">开源相关</string>
-  <string name="pref_open_source_library_summary">感谢各大开源项目，世界因你们而更加精彩</string>
-  <string name="pref_open_source_library_okhttp">okhttp</string>
-  <string name="pref_open_source_library_okhttp_summary">An HTTP+HTTP/2 client for Android and Java applications.</string>
-  <string name="pref_open_source_library_litepal">LitePal</string>
-  <string name="pref_open_source_library_litepal_summary">An Android library that makes developers use SQLite database extremely easy.</string>
-  <string name="pref_open_source_library_minipay">MiniPay</string>
-  <string name="pref_open_source_library_minipay_summary">A nice tool for mobile pay without Wechat or Ali sdk</string>
+    <string name="pref_open_source_library">开源相关</string>
+    <string name="pref_open_source_library_summary">感谢各大开源项目，世界因你们而更加精彩</string>
+    <string name="pref_open_source_library_okhttp">okhttp</string>
+    <string name="pref_open_source_library_okhttp_summary">An HTTP+HTTP/2 client for Android and Java applications.</string>
+    <string name="pref_open_source_library_litepal">LitePal</string>
+    <string name="pref_open_source_library_litepal_summary">An Android library that makes developers use SQLite database extremely easy.</string>
+    <string name="pref_open_source_library_minipay">MiniPay</string>
+    <string name="pref_open_source_library_minipay_summary">A nice tool for mobile pay without Wechat or Ali sdk</string>
 
-  <string name="pref_update_log">更新日志</string>
-  <string name="pref_update_log_summary">看看都更新了什么内容</string>
+    <string name="pref_update_log">更新日志</string>
+    <string name="pref_update_log_summary">看看都更新了什么内容</string>
 
-  <string name="pref_github">GitHub</string>
-  <string name="pref_github_summary">欢迎Start该项目</string>
-
-  <string name="pref_get_virtual_xposed">获取VirtualXposed</string>
-  <string name="pref_get_virtual_xposed_summary">如果你什么原因无法安装Xposed，那么请使用VirtualXposed(VXP)</string>
-  <!--END-->
+    <string name="pref_github">GitHub</string>
+    <string name="pref_github_summary">欢迎Start该项目</string>
+    <!--END-->
 </resources>

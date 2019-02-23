@@ -143,16 +143,6 @@
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/TvcFish/AideHelper"/>
         </Preference>
-
-        <Preference
-            android:key="get_virtual_xposed"
-            android:summary="@string/pref_get_virtual_xposed_summary"
-            android:title="@string/pref_get_virtual_xposed">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://github.com/android-hacker/VirtualXposed/releases"/>
-        </Preference>
-
     </PreferenceCategory>
 
 </PreferenceScreen>
