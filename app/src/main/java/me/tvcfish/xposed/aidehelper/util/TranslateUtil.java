@@ -24,7 +24,10 @@ public class TranslateUtil {
 
   private static final String from = "en";
   private static final String to = "zh-CHS";
-  private static final String pid = "85c2ddface5a4e913fc22fa34df0783c";
+  /*******************************************/
+  private static final String pid = "your pid";
+  private static final String key = "your key";
+  /*******************************************/
   private static final String salt = "1434918491";
 
   //TAG
@@ -41,7 +44,7 @@ public class TranslateUtil {
         .add("pid", pid)
         .add("q", en)
         .add("salt", salt)
-        .add("sign", getMD5(pid + en + salt + "d6888569844199aa4d7b6353b5396095"));
+        .add("sign", getMD5(pid + en + salt + key));
     final Request request = new Request.Builder()
         .url("http://fanyi.sogou.com/reventondc/api/sogouTranslate")
         .addHeader("content-type", "application/x-www-form-urlencoded")
