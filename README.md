@@ -3,6 +3,11 @@
 
 如果你在VirtualXposed环境下打开AIDE很慢，那么去清除VirtualXPosed的数据，在重新使用就好多了
 
+## 关于翻译功能失效
+1. 去[搜狗深智引擎](https://deepi.sogou.com/)申请api
+2. 替换下方的pid和key就好了[TranslateUtil.java](https://github.com/ikws4/AideHelper/blob/master/app/src/main/java/me/tvcfish/xposed/aidehelper/util/TranslateUtil.java)
+
+
 ## 功能介绍
 
 - 解锁专业版
