@@ -1,4 +1,6 @@
-![](https://img.shields.io/github/downloads/ikws4/AideHelper/total)
+![GitHub All Releases](https://img.shields.io/github/downloads/ikws4/AideHelper/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ikws4/AideHelper)
+![GitHub](https://img.shields.io/github/license/ikws4/AideHelper)
 
 ## 简介
 一款专门为AIDE量身打造的Xposed插件，提供个性化选择。
