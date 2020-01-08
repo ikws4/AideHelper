@@ -1,3 +1,5 @@
+![](https://img.shields.io/github/downloads/ikws4/AideHelper/total)
+
 ## 简介
 一款专门为AIDE量身打造的Xposed插件，提供个性化选择。
 
